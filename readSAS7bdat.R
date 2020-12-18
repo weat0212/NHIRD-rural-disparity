@@ -1,5 +1,5 @@
-install.packages("sas7bdat")
-install.packages("haven")
+#install.packages("sas7bdat")
+#install.packages("haven")
 
 library("sas7bdat")
 library("haven")
@@ -18,18 +18,24 @@ filepath <- "D:/SAS/"
 
 #OPDTE 
 for(i in month) {
-  infile <- paste("D:/SAS/Health-01/","h_nhi_opdte103",i,"_10",".sas7bdat", sep = "")
-  filename <- paste("h_nhi_opdte103",i,"_10", sep = "")
-  assign(filename, read.sas7bdat(infile))
+  for (j in group) {
+    infile <- paste(filepath,"Health-01/","h_nhi_opdte103",i,"_",j,".sas7bdat", sep = "")
+    filename <- paste("h_nhi_opdte103",i,"_",j, sep = "")
+    assign(filename, read.sas7bdat(infile)) 
+  }
 }
 
+
 #IPDTE
-h_nhi_ipdte103 <- paste("D:/SAS/Health-02/","h_nhi_ipdte103",".sas7bdat", sep = "")
+infile <- paste(filepath,"Health-02/","h_nhi_ipdte103",".sas7bdat", sep = "")
+assign("h_nhi_ipdte103", read.sas7bdat(infile)) 
+
 
 #ENROL
 for(i in month) {
-  infile <- paste("D:/SAS/Health-07/","h_nhi_enrol103",i,".sas7bdat", sep = "")
+  infile <- paste(filepath,"Health-07/","h_nhi_enrol103",i,".sas7bdat", sep = "")
   filename <- paste("h_nhi_enrol103",i, sep = "")
   assign(filename, read.sas7bdat(infile))
 }
+
 

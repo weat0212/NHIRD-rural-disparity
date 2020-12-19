@@ -53,6 +53,8 @@ city_encode$rural[which(city_encode$V2=="基隆縣信義區")] <- 0
 city_encode$rural[which(city_encode$V2=="基隆市仁愛區")] <- 0
 # 91 - 3 = 88
 
+names(city_encode) <- c("CITY","city_name","rural")
+
 write.csv(city_encode,"D:/SAS/TermPaper/dataset/city_encode.csv", row.names = FALSE)
 
 

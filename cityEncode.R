@@ -1,25 +1,4 @@
-<<<<<<< HEAD
 
-# *********************
-# **** CITY Encode ****
-# *********************
-
-# City Encoding Code
-
-library(dplyr)
-library(stringr)
-
-city_encode <- read.csv(file.choose(), header = FALSE, encoding = "UTF-8")
-
-# substring
-city_encode <- str_split_fixed(city_encode$V1, " ", 4)
-city_encode <- city_encode[,c(1:2)]
-
-# Add rural dataset
-rural <- read.csv(file.choose(), header = FALSE, encoding = "BIG5")
-
-
-=======
 
 # *********************
 # **** CITY Encode ****
@@ -80,4 +59,3 @@ names(city_encode) <- c("CITY","city_name","rural")
 write.csv(city_encode,"D:/SAS/TermPaper/dataset/city_encode.csv", row.names = FALSE)
 
 
->>>>>>> a1643b6 (IPDTE analysis)

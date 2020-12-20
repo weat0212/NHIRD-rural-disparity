@@ -63,9 +63,12 @@ loadOpdte <- function(mon, grp) {
 # @param mon : month 
 # @param grp : group
 ruralFilter <- function(mon, grp) {
-  file_name <- paste("opdte", mon, grp, sep = "")
-  assign(paste("opdte_rural", mon, "_", grp, sep = ""), get(file_name)[which(ipdte$rural == 1),], envir = .GlobalEnv)
-  assign(paste("opdte_city", mon, "_", grp, sep = ""), get(file_name)[which(ipdte$rural == 0),], envir = .GlobalEnv)
+  df <- get(paste("opdte", mon, grp, sep = ""))
+  
+  assign(paste("opdte_rural", mon, "_", grp, sep = ""), 
+         df[which(df$rural == 1),], envir = .GlobalEnv)
+  assign(paste("opdte_city", mon, "_", grp, sep = ""), 
+         df[which(df$rural == 0),], envir = .GlobalEnv)
 }
 
 #======FUNCTION======#

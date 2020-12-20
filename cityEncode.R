@@ -30,13 +30,14 @@ for (col in colnames(rural)){
 str(rural)  #factor
 str(city_encode) #factor
 
+# factor to string type
 rural <- data.frame(lapply(rural, as.character), stringsAsFactors=FALSE)
 city_encode <- data.frame(lapply(city_encode, as.character), stringsAsFactors=FALSE)
 
 area<- city_encode$V2
-city_encode$rural <- 0 # default 0
+city_encode$rural <- 0 # default set 0
 
-# Overriding
+# Overriding -> if rarual then set 1
 for (r in rural$V2) {
   city_encode$rural[which(grepl(substr(r,0,2), area)==TRUE)] <- 1
 }
@@ -52,8 +53,8 @@ city_encode$rural[which(city_encode$V2=="臺北市信義區")] <- 0
 city_encode$rural[which(city_encode$V2=="臺北市大同區")] <- 0
 city_encode$rural[which(city_encode$V2=="基隆縣信義區")] <- 0
 city_encode$rural[which(city_encode$V2=="基隆市仁愛區")] <- 0
-# 91 - 3 = 88
 
+# Rename column
 names(city_encode) <- c("CITY","city_name","rural")
 
 write.csv(city_encode,"D:/SAS/TermPaper/dataset/city_encode.csv", row.names = FALSE)

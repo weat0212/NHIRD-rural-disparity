@@ -71,6 +71,25 @@ ruralFilter <- function(mon, grp) {
          df[which(df$rural == 0),], envir = .GlobalEnv)
 }
 
+
+# @param mon : month 
+# @param grp : group
+countRefer <- function(loc, mon, grp) {
+  df <- get(paste("opdte_", loc, mon, "_",grp, sep = ""))
+  
+  # 46 PAT_TRAN_OUT :: if patient trans out {Y:N}
+  tmp <- df[which(df$PAT_TRAN_OUT == "N"),]
+  
+  # count the num if rural & referral
+  if(loc=="rural"){
+    rural_refer_count <<- rural_refer_count + nrow(tmp)
+  }else{
+    city_refer_count <<- city_refer_count + nrow(tmp)
+  }
+  
+}
+
+
 #======FUNCTION======#
 
 # backup & merge
@@ -82,7 +101,26 @@ for (m in month) {
   }
 }
 
+# Observing data type
+str(opdte0110$PAT_TRAN_OUT) #factor
 
+rural_refer_count <- 0
+city_refer_count <- 0
 
+for (m in month) {
+  for (g in group) {
+    countRefer("rural",m,g)
+    countRefer("city",m,g)
+  }
+}
+
+cat("rural & refer =",rural_refer_count,"; city & refer =", city_refer_count)
+
+# rural & refer = 148
+# city & refer = 1246
+# rural population = 66270 + 148
+# city population = 1023009 + 1246
+# rural referral rate = 0.002
+# city referral rate = 0.001
 
 

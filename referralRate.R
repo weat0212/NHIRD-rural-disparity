@@ -40,6 +40,8 @@ length(which(duplicated(ipdte_city$ID) == TRUE)) # duplicate 19
 # ---
 
 
+
+
 # -------------
 # OPDTE PART
 # -------------
@@ -48,6 +50,7 @@ length(which(duplicated(ipdte_city$ID) == TRUE)) # duplicate 19
 # See the form of data
 summary(h_nhi_opdte10301_10)
 
+#======FUNCTION======#
 # This is a funtion to merge every opdte file with city in rural
 # @param mon : month 
 # @param grp : group
@@ -63,22 +66,26 @@ loadOpdte <- function(mon, grp) {
 # @param mon : month 
 # @param grp : group
 ruralFilter <- function(mon, grp) {
+  
+  # use string to get dataframe
   df <- get(paste("opdte", mon, grp, sep = ""))
   
+  # divide dataset into two by rural & city
   assign(paste("opdte_rural", mon, "_", grp, sep = ""), 
          df[which(df$rural == 1),], envir = .GlobalEnv)
   assign(paste("opdte_city", mon, "_", grp, sep = ""), 
          df[which(df$rural == 0),], envir = .GlobalEnv)
 }
 
-
+# @param loc : location {rural, city}
 # @param mon : month 
 # @param grp : group
-countRefer <- function(loc, mon, grp) {
+# @param ref : referral {"Y","N"}
+countRefer <- function(loc, mon, grp, ref) {
   df <- get(paste("opdte_", loc, mon, "_",grp, sep = ""))
   
   # 46 PAT_TRAN_OUT :: if patient trans out {Y:N}
-  tmp <- df[which(df$PAT_TRAN_OUT == "N"),]
+  tmp <- df[which(df$PAT_TRAN_OUT == ref),]
   
   # count the num if rural & referral
   if(loc=="rural"){
@@ -90,7 +97,7 @@ countRefer <- function(loc, mon, grp) {
 }
 
 
-#======FUNCTION======#
+#======Main======#
 
 # backup & merge
 # rural & city separate
@@ -104,13 +111,26 @@ for (m in month) {
 # Observing data type
 str(opdte0110$PAT_TRAN_OUT) #factor
 
+# count the referral num 
 rural_refer_count <- 0
 city_refer_count <- 0
 
 for (m in month) {
   for (g in group) {
-    countRefer("rural",m,g)
-    countRefer("city",m,g)
+    countRefer("rural",m,g,"Y")
+    countRefer("city",m,g,"Y")
+  }
+}
+cat("rural & refer =",rural_refer_count,"; city & refer =", city_refer_count)
+
+# count the no referral num 
+rural_refer_count <- 0
+city_refer_count <- 0
+
+for (m in month) {
+  for (g in group) {
+    countRefer("rural",m,g,"N")
+    countRefer("city",m,g,"N")
   }
 }
 
@@ -118,8 +138,8 @@ cat("rural & refer =",rural_refer_count,"; city & refer =", city_refer_count)
 
 # rural & refer = 148
 # city & refer = 1246
-# rural population = 66270 + 148
-# city population = 1023009 + 1246
+# rural population = 66270 + 148 = 66418
+# city population = 1023009 + 1246 = 1024255
 # rural referral rate = 0.002
 # city referral rate = 0.001
 

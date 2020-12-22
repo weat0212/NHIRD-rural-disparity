@@ -3,6 +3,6 @@ which(ipdte_rural$TRAN_CODE == 4)
 
 # num of death in rural = 9
 
-which(ipdte_city$TRAN_CODE == 4)
+which(ipdte_urban$TRAN_CODE == 4)
 
-# num of death in city = 0 
+# num of death in urban = 0 

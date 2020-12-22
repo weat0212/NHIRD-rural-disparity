@@ -1,7 +1,7 @@
 
 
 # @params d = datatype {enrol, opdte, ipdte}
-# @params loc = location {rural, city}
+# @params loc = location {rural, urban}
 # @params m = month
 getDf <- function(d, loc, m) {
   
@@ -12,7 +12,7 @@ getDf <- function(d, loc, m) {
 
 
 # @params d = datatype {enrol, opdte, ipdte}
-# @params loc = location {rural, city}
+# @params loc = location {rural, urban}
 # @params m = month
 calAge <- function(d, loc, m) {
   
@@ -20,7 +20,7 @@ calAge <- function(d, loc, m) {
   df$ID_BIRTH_Y <- as.integer(as.character(df$ID_BIRTH_Y))
   
   
-  if(loc == "city"){
+  if(loc == "urban"){
     df$age <- (2014 - df$ID_BIRTH_Y)
   }else{
     df$age <- (2014 - df$ID_BIRTH_Y)
@@ -29,7 +29,7 @@ calAge <- function(d, loc, m) {
 }
 
 # @params d = datatype {enrol, opdte, ipdte}
-# @params loc = location {rural, city}
+# @params loc = location {rural, urban}
 # @params m = month
 calMean <- function(dt, loc, m) {
   tmp <- get(paste(dt,"_",loc,m,sep = ""))
@@ -41,15 +41,15 @@ calMean <- function(dt, loc, m) {
 
 for (m in month) {
   
-  assign(paste("enrol_city",m,sep = ""), calAge("enrol", "city", m))
+  assign(paste("enrol_urban",m,sep = ""), calAge("enrol", "urban", m))
   assign(paste("enrol_rural",m,sep = ""), calAge("enrol", "rural", m))
 }
 
 for (m in month) {
   
   cat("enrol_rural",m," = ",calMean("enrol", "rural", m),"\n")
-  cat("enrol_city",m," = ",calMean("enrol", "city", m),"\n")
+  cat("enrol_urban",m," = ",calMean("enrol", "urban", m),"\n")
   
 }
 # rural mean age ~= 42
-# city mean age ~= 39
+# urban mean age ~= 39

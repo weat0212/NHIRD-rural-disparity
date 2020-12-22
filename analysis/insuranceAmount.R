@@ -2,18 +2,6 @@ month <- c("01","02","03","04","05","06","07","08","09","10","11","12")
 
 #======FUNCTION======#
 
-# backup enrol datatset 
-for(m in month){
-  assign(paste("enrol", m, sep = ""), get(paste("h_nhi_enrol103", m, sep = "")))
-}
-
-
-# merge enrol & rural by CITY code
-for(m in month){
-
-  # flag {rural=1, urban=0}
-  assign(paste("enrol", m, sep = ""), merge(get(paste("enrol", m, sep = "")), city_encode, by="ID1_CITY"))
-}
 
 
 

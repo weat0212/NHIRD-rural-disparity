@@ -35,6 +35,21 @@ sepOpdte <- function(mon, grp) {
          df[which(df$rural == 0),], envir = .GlobalEnv)
 }
 
+# Divide dataset into rural and urban
+# @param mon : month 
+# @param grp : group
+sepEnrol <- function(mon) {
+  
+  # use string to get dataframe
+  df <- get(paste("enrol", mon, sep = ""))
+  
+  # divide dataset into two by rural & city
+  assign(paste("enrol_rural", mon, sep = ""), 
+         df[which(df$rural == 1),], envir = .GlobalEnv)
+  assign(paste("enrol_urban", mon, sep = ""), 
+         df[which(df$rural == 0),], envir = .GlobalEnv)
+}
+
 
 
 
@@ -66,17 +81,22 @@ for (m in month) {
   }
 }
 
+names(city_code_flag) <- c("ID1_CITY","city_name","rural")
 
 # backup ENROL datatset 
 for(m in month){
   assign(paste("enrol", m, sep = ""), get(paste("h_nhi_enrol103", m, sep = "")))
 }
 
+
 # merge enrol & rural by CITY code
 for(m in month){
   
   # flag {rural=1, urban=0}
   assign(paste("enrol", m, sep = ""), merge(get(paste("enrol", m, sep = "")), 
-                                            city_code_flag, by.x="ID1_CITY", by.y = "CITY"))
+                                            city_code_flag, by="ID1_CITY", all.x = TRUE))
 }
 
+for (m in month) {
+  sepEnrol(m)
+}

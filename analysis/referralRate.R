@@ -19,8 +19,8 @@ length(which(duplicated(ipdte_rural_ref$ID) == TRUE))
 # ---
 
 
-ipdte_city_ref <- ipdte_city[ipdte_city$TRAN_CODE %in% c(6),]
-length(which(duplicated(ipdte_city_ref$ID) == TRUE))
+ipdte_urban_ref <- ipdte_urban[ipdte_urban$TRAN_CODE %in% c(6),]
+length(which(duplicated(ipdte_urban_ref$ID) == TRUE))
 
 # SUMMARY: 
 # ---
@@ -37,7 +37,7 @@ length(which(duplicated(ipdte_city_ref$ID) == TRUE))
 
 
 
-# @param loc : location {rural, city}
+# @param loc : location {rural, urban}
 # @param mon : month 
 # @param grp : group
 # @param ref : referral {"Y","N"}
@@ -65,7 +65,7 @@ str(opdte0110$PAT_TRAN_OUT) #factor
 
 # count the referral num 
 rural_refer_count <- 0
-city_refer_count <- 0
+urban_refer_count <- 0
 
 for (m in month) {
   for (g in group) {
@@ -73,7 +73,7 @@ for (m in month) {
     countRefer("urban",m,g,"Y")
   }
 }
-cat("rural & refer =",rural_refer_count,"; city & refer =", urban_refer_count)
+cat("rural & refer =",rural_refer_count,"; urban & refer =", urban_refer_count)
 
 # count the no referral num 
 rural_refer_count <- 0
@@ -86,7 +86,7 @@ for (m in month) {
   }
 }
 
-cat("rural & refer =",rural_refer_count,"; city & refer =", urban_refer_count)
+cat("rural & refer =",rural_refer_count,"; urban & refer =", urban_refer_count)
 
 
 

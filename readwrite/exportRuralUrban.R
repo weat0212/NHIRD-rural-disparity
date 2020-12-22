@@ -15,15 +15,15 @@ exportCsv <- function(dt,loc, m, g) {
 
 for (m in month) {
   for (g in group) {
-    #exportCsv("opdte", "city", m, g)
-    #exportCsv("opdte", "rural", m, g)
+    exportCsv("opdte", "urban", m, g)
+    exportCsv("opdte", "rural", m, g)
     
-    exportCsv("enrol", "city", m)
+    exportCsv("enrol", "urban", m)
     exportCsv("enrol", "rural", m)
   }
 }
 
 
 
-write.csv(ipdte_city, "D:/SAS/Termpaper/ipdte_city.csv", row.names = FALSE)
+write.csv(ipdte_urban, "D:/SAS/Termpaper/ipdte_urban.csv", row.names = FALSE)
 write.csv(ipdte_rural, "D:/SAS/Termpaper/ipdte_rural.csv", row.names = FALSE)

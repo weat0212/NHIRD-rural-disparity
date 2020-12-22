@@ -28,6 +28,9 @@ calAge <- function(d, loc, m) {
   return(df)
 }
 
+# @params d = datatype {enrol, opdte, ipdte}
+# @params loc = location {rural, city}
+# @params m = month
 calMean <- function(dt, loc, m) {
   tmp <- get(paste(dt,"_",loc,m,sep = ""))
   return(mean(tmp$age))

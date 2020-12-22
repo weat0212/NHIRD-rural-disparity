@@ -1,4 +1,5 @@
 
+# for data before 99th year of the "Republic Era"
 
 # *********************
 # **** CITY Encode ****

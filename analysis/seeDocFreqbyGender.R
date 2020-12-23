@@ -46,6 +46,7 @@ opdte_f$ID <- as.character(opdte_f$ID)
 opdte_m$ID <- as.character(opdte_m$ID)
 
 # Separate rural and urban
+# 4 datasets will came out
 sepRural(opdte_m, "m")
 sepRural(opdte_f, "f")
 
@@ -61,4 +62,8 @@ mean(opdte_m_urban_freq$n)  # urban male = 13.03914
 mean(opdte_f_rural_freq$n)  # rural female = 7.921644
 mean(opdte_f_urban_freq$n)  # urban female = 14.27477
 
-
+# t-test 
+t.test(opdte_m_rural_freq$n)
+t.test(opdte_m_urban_freq$n)
+t.test(opdte_f_rural_freq$n)
+t.test(opdte_f_urban_freq$n)

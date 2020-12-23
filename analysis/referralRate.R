@@ -90,7 +90,8 @@ for (m in month) {
 
 cat("rural & refer =",rural_refer_count,"; urban & refer =", urban_refer_count)
 
-# rural & refer = 327490 ; urban & refer = 1335906
+# rural & no-refer = 327490 ; urban & no-refer = 1335906
+
 # rural & refer rate =  0.0011; urban & refer rate = 0.0012  
 
 

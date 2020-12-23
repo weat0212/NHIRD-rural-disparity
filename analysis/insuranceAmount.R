@@ -3,8 +3,6 @@ month <- c("01","02","03","04","05","06","07","08","09","10","11","12")
 #======FUNCTION======#
 
 
-
-
 # @params dt = datatype {"opdte", "ipdte", "enrol"}
 # @params mon = month
 ruralFilter <- function(dt, mon) {
@@ -38,4 +36,4 @@ for (m in month) {
 }
 
 cat("rural insurance fee amount=", rural_ins_amount, "urban insurance fee amount =", urban_ins_amount)
-#rural insurance fee amount= 1125673216 ; urban insurance fee amount = 24367464841
+#rural insurance fee amount= 7,598,215,831 ; urban insurance fee amount = 26,448,210,780

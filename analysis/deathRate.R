@@ -1,8 +1,18 @@
+
+
 # find the death data 
-which(ipdte_rural$TRAN_CODE == 4)
+length(which(ipdte_rural$TRAN_CODE == 4))
 
-# num of death in rural = 9
+# num of death in rural = 58
 
-which(ipdte_urban$TRAN_CODE == 4)
+length(which(ipdte_urban$TRAN_CODE == 4))
 
-# num of death in urban = 0 
+# num of death in urban = 232
+
+
+# Diagram 
+# **NOT COMPLETE**
+tmp <- data.frame(c("Rural", "Urban"), c(58, 232))
+names(tmp) <- c("type", "number")
+
+

@@ -11,18 +11,18 @@ group <- c("10","20","30")
 # -------------
 
 # Referral data
-ipdte_rural_ref <- ipdte_rural[ipdte_rural$TRAN_CODE %in% c(6),] 
+ipdte_rural_ref <- ipdte_rural[ipdte_rural$TRAN_CODE %in% c(6),]  #37
 # UNIQUE
-length(which(duplicated(ipdte_rural_ref$ID) == TRUE))
+length(which(duplicated(ipdte_rural_ref$ID) == TRUE)) #dup : 5
 
-# SUMMARY: 
+# SUMMARY: 37/2506 = 0.0147(referral rate)
 # ---
 
 
-ipdte_urban_ref <- ipdte_urban[ipdte_urban$TRAN_CODE %in% c(6),]
-length(which(duplicated(ipdte_urban_ref$ID) == TRUE))
+ipdte_urban_ref <- ipdte_urban[ipdte_urban$TRAN_CODE %in% c(6),] #157
+length(which(duplicated(ipdte_urban_ref$ID) == TRUE)) #dup : 36
 
-# SUMMARY: 
+# SUMMARY: 157/11783 = 0.0133(referral rate)
 # ---
 
 
@@ -74,6 +74,7 @@ for (m in month) {
   }
 }
 cat("rural & refer =",rural_refer_count,"; urban & refer =", urban_refer_count)
+# rural & refer = 375 ; urban & refer = 1712
 
 # count the no referral num 
 rural_refer_count <- 0
@@ -88,6 +89,7 @@ for (m in month) {
 
 cat("rural & refer =",rural_refer_count,"; urban & refer =", urban_refer_count)
 
-
+# rural & refer = 327490 ; urban & refer = 1335906
+# rural & refer rate =  0.0011; urban & refer rate = 0.0012  
 
 

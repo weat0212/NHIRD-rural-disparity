@@ -12,6 +12,7 @@ group <- c("10","20","30")
 
 # Referral data
 ipdte_rural_ref <- ipdte_rural[ipdte_rural$TRAN_CODE %in% c(6),]  #37
+
 # UNIQUE
 length(which(duplicated(ipdte_rural_ref$ID) == TRUE)) #dup : 5
 

@@ -3,26 +3,10 @@ month <- c("01","02","03","04","05","06","07","08","09","10","11","12")
 #======FUNCTION======#
 
 
-# @params dt = datatype {"opdte", "ipdte", "enrol"}
-# @params mon = month
-ruralFilter <- function(dt, mon) {
-  
-  # use string to get dataframe
-  df <- get(paste(dt, mon, sep = ""))
-  
-  # divide dataset into two by rural & urban
-  assign(paste(dt,"_rural", mon, sep = ""), 
-         df[which(df$rural == 1),], envir = .GlobalEnv)
-  assign(paste(dt,"_urban", mon, sep = ""), 
-         df[which(df$rural == 0),], envir = .GlobalEnv)
-}
+
 
 #======MAIN======#
 
-for (m in month) {
-  
-  ruralFilter("enrol", m)
-}
 
 rural_ins_amount <- 0
 urban_ins_amount <- 0
@@ -36,4 +20,12 @@ for (m in month) {
 }
 
 cat("rural insurance fee amount=", rural_ins_amount, "urban insurance fee amount =", urban_ins_amount)
-#rural insurance fee amount= 7,598,215,831 ; urban insurance fee amount = 26,448,210,780
+# rural insurance fee amount in a year = 7,598,215,831 ; urban insurance fee amount in a year = 26,448,210,780
+# ---
+
+
+# Average amount of insurance fee per person comparison between Rural and Urban
+for (m in month) {
+  
+}
+

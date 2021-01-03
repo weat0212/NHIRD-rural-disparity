@@ -19,6 +19,8 @@ freqOpdte <- function(ds){
 }
 
 # Separate rural and urban
+# @param ds : dataset
+# @param gender
 sepRural <- function(ds, gender) {
   
   assign(paste("opdte_",gender,"_rural",sep = ""), ds[which(ds$rural==1),], .GlobalEnv)

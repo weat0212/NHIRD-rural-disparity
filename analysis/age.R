@@ -18,13 +18,8 @@ calAge <- function(d, loc, m) {
   
   df <- getDf(d, loc, m)
   df$ID_BIRTH_Y <- as.integer(as.character(df$ID_BIRTH_Y))
+  df$age <- (2014 - df$ID_BIRTH_Y)
   
-  
-  if(loc == "urban"){
-    df$age <- (2014 - df$ID_BIRTH_Y)
-  }else{
-    df$age <- (2014 - df$ID_BIRTH_Y)
-  }
   return(df)
 }
 
